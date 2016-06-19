@@ -1,0 +1,38 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{geometry}
+ \geometry{
+	 a4paper,
+ 	total={170mm,257mm},
+ 	left=20mm,
+ 	top=20mm,
+ }
+
+
+\title{Open Source Power Supply\\ Technical Requirement Specification}
+\author{Ashley J. Robinson \\ Henry S. Lovett}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}
+
+\item Use of a Laptop / readily available Power Suppl
+\item Voltage and current adjstable
+	\begin{enumerate}
+	\item Voltage can be set with a resolution of 10mV
+	\item Current limit can be set with a resolution of 10mA
+	\item Voltage can be varied between 0V and power supply input to OSPS
+	\item How do we stop power supply providing current out of spec of the input supply? Ask the user to en sure in the spec? watch for voltage drop when overcurrent?
+	\end{enumerate}
+\item Low BoM Cost – use of CoTs enclosure
+\item Electronics will be contained in an enclosure on which dials/displays can be mounted
+	\begin{enumerate}
+	\item Variant 1 – CoTs enclosure adapted by during assembly
+	\item Variant 2 – 3D printed enclosure
+	\end{enumerate}
+\item  USB Type C – if we have time, it would be good to put this support in
+\end{enumerate}
+
+
+\end{document}
