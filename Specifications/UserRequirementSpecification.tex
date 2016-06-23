@@ -1,5 +1,7 @@
 \documentclass[12pt,a4paper]{article}
 \usepackage{geometry}
+\usepackage{enumitem}
+\usepackage[acronym,smallcaps]{glossaries}
  \geometry{
 	 a4paper,
  	total={170mm,257mm},
@@ -8,6 +10,13 @@
  }
 
 
+\newacronym{bom}{BoM}{Bill of Materials}
+\newacronym{dc}{DC}{Direct Current}
+\newacronym{gui}{GUI}{Graphical User Interface}
+\newacronym{osps}{OSPS}{Open Source Power Supply}
+\newacronym{pcb}{PCB}{Printed Circuit Board}
+\newacronym{usb}{USB}{Universal Serial Bus}
+
 \title{Open Source Power Supply\\ User Requirement Specification}
 \author{Ashley J. Robinson \\ Henry S. Lovett}
 \date{\today}
@@ -15,36 +24,76 @@
 \begin{document}
 \maketitle
 
-\begin{enumerate}
 
-\item User can power OSPS from a DC barrel jack supply or USB
-\item Instructions will be provided for the user to construct an OSPS themselves
-	\begin{enumerate}
-	\item User will have an assumed skill level of an A level electronics student
-		\begin{enumerate}
+
+\section{Construction phase}
+\begin{enumerate}[label*=\arabic*.]
+\item The user will be provided with the following materials.
+	\begin{enumerate}[label*=\arabic*.]
+	\item A construction manual.
+		\begin{enumerate}[label*=\arabic*.]
+		\item Step by step instructions on how to build an \gls{osps}.
+		\item Every possible step includes an image of the \gls{osps} construction task. 
+		\item The manual will be published online as a pdf file.
+		\end{enumerate}
+	\item \gls{bom}
+		\begin{enumerate}[label*=\arabic*.]
+		\item Supplier for every for part in the design.
+		\item Supplier is easy to contact and will self items required in single quantites.
+		\item If possible all items can be purchased from one supplier.
+		\item The target \gls{bom} cost is \pounds50.
+		\item The \gls{bom} will be published online as a spreadsheet.
+		\end{enumerate}
+	\item List of fabrication outfits
+		\begin{enumerate}[label*=\arabic*.]
+		\item This will likely include \glspl{pcb} and rapid protyping.
+		\item All fabrication outfits are a suggestion but submission files are sutiable for all outfits.
+		\item The target fabrication cost is \pounds50.
+		\item Required fabrication outputs are unkown but the will be made avilable online.
+		\end{enumerate}
+	\end{enumerate}
+\item User will have an assumed skill level of an A level electronics student
+		\begin{enumerate}[label*=\arabic*.]
 		\item They can solder SMT components. 
 		\item Understand component orientations, resistor colour bands, etc
 		\item Flash binary images to microcontrollers
 		\end{enumerate}
-	\item User will have to following tools available
-		\begin{enumerate}
+\item User will have to following tools available
+		\begin{enumerate}[label*=\arabic*.]
 		\item Soldering iron
 		\item Screw drivers
 		\item Hex keys
 		\item Computer running Windows/Linux
 		\item3D printer OR (drill/hacksaw) 
 		\end{enumerate}
-	\end{enumerate}
-\item User can control output voltage and current limit through dials fitted to front of OSPS
-\item There may be a course and fine adjustment 
-\item There may be the option to adjust each number in the set string by scrolling 
-\item User can view the voltage and current
-\item This may be using seven sgment displays
-\item This may be using a screen
-\item User can interface to OSPS through computer GUI application
-\item User can log current measurments to a .csv file through GUI
-\item User can view/set the voltage/current through GUI
 \end{enumerate}
+
+
+\section{Use phase}
+\begin{enumerate}
+\item The user can power \gls{osps} from a \gls{dc} barrel jack supply such as those provided with laptops.
+\item The user can power \gls{osps} from a \gls{usb} mains power adapter  or computer \gls{usb} socket.
+\item The user can control output voltage and current limit through dials fitted to front of OSPS
+	\begin{enumerate}[label*=\arabic*.]
+	\item There may be  course and fine adjustment 
+	\item There may be the option to adjust each number in the set string by scrolling 
+	\end{enumerate}
+\item User can view the voltage and current with any additional equipment
+	\begin{enumerate}[label*=\arabic*.]
+	\item This may be using seven sgment displays
+	\item This may be using a screen
+	\end{enumerate}
+\item User can interface to OSPS through a computer \gls{gui} application
+\item User can log current measurments to a .csv file through a \gls{gui} application
+\item User can view/set the voltage/current through a \gls{gui} application
+\end{enumerate}
+
+
+\section{Maintain and upgrade phase}
+\begin{enumerate}
+\item All design material will be made available for user to modify and reuse as they see fit.
+\end{enumerate}
+
 
 
 \end{document}
