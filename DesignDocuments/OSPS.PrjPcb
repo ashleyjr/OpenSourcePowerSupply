@@ -30,13 +30,47 @@ DItemRevisionGUID=
 ReportSuppressedErrorsInMessages=0
 FSMCodingStyle=eFMSDropDownList_OneProcess
 FSMEncodingStyle=eFMSDropDownList_OneHot
-OutputPath=
+OutputPath=Project Outputs for OSPS
 LogFolderPath=
 ManagedProjectGUID=
 
 [Preferences]
 PrefsVaultGUID=
 PrefsRevisionGUID=
+
+[Document1]
+DocumentPath=Block Diagram.SchDoc
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=XHDDHUOY
+
+[Document2]
+DocumentPath=PDF.OutJob
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
 
 [Configuration1]
 Name=Default Configuration
@@ -46,6 +80,9 @@ ReleaseItemId=
 CurrentRevision=
 Variant=[No Variations]
 OutputJobsCount=0
+
+[Generic_EDE]
+OutputDir=Project Outputs for OSPS
 
 [OutputGroup1]
 Name=Netlist Outputs
