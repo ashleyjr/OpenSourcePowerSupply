@@ -17,13 +17,13 @@
 
 \begin{enumerate}
 
-\item Use of a Laptop / readily available Power Suppl
+\item Use of a Laptop / readily available Power Supply
 \item Voltage and current adjstable
 	\begin{enumerate}
 	\item Voltage can be set with a resolution of 10mV
 	\item Current limit can be set with a resolution of 10mA
-	\item Voltage can be varied between 0V and power supply input to OSPS
-	\item How do we stop power supply providing current out of spec of the input supply? Ask the user to en sure in the spec? watch for voltage drop when overcurrent?
+	\item Voltage can be varied between 0V and power supply input to OSPS.
+	\item How do we stop power supply providing current out of spec of the input supply? Ask the user to en sure in the spec? watch for voltage drop when overcurrent? Device won't function unless the data has been input for the supply used. Store in NV memory for next time, but confirm on each turn on. Running other power supplies out of spec is bad and not necessarily the same response over others (i.e. one supply might drop the voltage, others may just cut power). Alternatively, USB C has negotiation built in over power, so using this would avoid this problem. 
 	\end{enumerate}
 \item Low BoM Cost – use of CoTs enclosure
 \item Electronics will be contained in an enclosure on which dials/displays can be mounted
@@ -32,6 +32,13 @@
 	\item Variant 2 – 3D printed enclosure
 	\end{enumerate}
 \item  USB Type C – if we have time, it would be good to put this support in
+	\begin{enumerate}
+	\item This is likely to be the new standard connector for all things computer.
+	\item No footprint issues for supporting different barrel jacks.
+	\item Protocol supports negotiating for power, meaning we know what we can do. 
+	\item Up to 100W @ 20V
+	\item Project then becomes a tutorial on how USB C protocols work, which would be a useful by-product. 
+	\end{enumerate}
 \end{enumerate}
 
 
