@@ -9,12 +9,13 @@
  	top=20mm,
  }
 
-
+\newacronym{3d}{3D}{Three Dimensional}
 \newacronym{bom}{BoM}{Bill of Materials}
 \newacronym{dc}{DC}{Direct Current}
 \newacronym{gui}{GUI}{Graphical User Interface}
 \newacronym{osps}{OSPS}{Open Source Power Supply}
 \newacronym{pcb}{PCB}{Printed Circuit Board}
+\newacronym{smt}{SMT}{Surface Mount Technology}
 \newacronym{usb}{USB}{Universal Serial Bus}
 
 \title{Open Source Power Supply\\ User Requirement Specification}
@@ -34,64 +35,75 @@
 		\begin{enumerate}[label*=\arabic*.]
 		\item Step by step instructions on how to build an \gls{osps}.
 		\item Every possible step includes an image of the \gls{osps} construction task. 
-		\item The manual will be published online as a pdf file.
+		\item The construction manual will be published online as a pdf file.
 		\end{enumerate}
 	\item \gls{bom}
 		\begin{enumerate}[label*=\arabic*.]
-		\item Supplier for every for part in the design.
-		\item Supplier is easy to contact and will sell items required in single quantites.
-		\item If possible all items can be purchased from one supplier. A list of preferred suppliers will be used if not possible (Farnell, RS, Digikey, Mouser, for example.)
+		\item Supplier for every part in the design. Supplier is easy to contact and will sell items required in low quantites.
+		\item If possible all items can be purchased from one supplier. A list of preferred suppliers will be used if not possible (Farnell, RS, Digikey, Mouser, for example.).
 		\item The target \gls{bom} cost is \pounds50.
 		\item The \gls{bom} will be published online as a spreadsheet / part of the build manual.
 		\end{enumerate}
 	\item List of fabrication outfits
 		\begin{enumerate}[label*=\arabic*.]
-		\item This will likely include \glspl{pcb} and rapid protyping.
-		\item All fabrication outfits are a suggestion but submission files are sutiable for all outfits.
+		\item This will likely include \glspl{pcb} fabrication and rapid protyping.
+		\item All fabrication outfits will be suggestions but submission files are sutiable for all outfits.
 		\item The target fabrication cost is \pounds50.
 		\item Required fabrication outputs are unkown but the will be made avilable online.
 		\end{enumerate}
 	\end{enumerate}
 \item User will have an assumed skill level of an A level electronics student
 		\begin{enumerate}[label*=\arabic*.]
-		\item They can solder SMT components to a limit of 0603 passives and QFN packages without centre pads. 
-		\item Understand component orientations, resistor colour bands, etc
-		\item Flash binary images to microcontrollers
+		\item They can solder \gls{smt} components to a limit of 0603 passives and QFN packages without centre pads. 
+		\item Understand component orientations, resistor colour bands, etc.
+		\item Flash binary images to microcontrollers.
+		\item The can install computer software from a command line interface.
 		\end{enumerate}
 \item User will have to following tools available
 		\begin{enumerate}[label*=\arabic*.]
-		\item Soldering iron
-		\item Screw drivers
-		\item Hex keys
-		\item Computer running Windows/Linux
-		\item 3D printer OR (drill/hacksaw) 
+		\item Soldering iron.
+		\item Screw drivers and hex keys.
+		\item Computer running Windows/Linux.
+		\item Access to a \gls{3d} printer will reduce the cost of fabrication but is not nessesacary.
 		\end{enumerate}
 \end{enumerate}
 
 
 \section{Use phase}
 \begin{enumerate}
+\item The user will be supplied with a user manual.
+	\begin{enumerate}[label*=\arabic*.]
+	\item The user manual will contain device ratings (maximum output voltage, maximum current source, etc.).
+	\item The user manual will be published online as a pdf file.
+	\end{enumerate}
 \item The user can power \gls{osps} from a \gls{dc} barrel jack supply such as those provided with laptops.
 \item The user can power \gls{osps} from a \gls{usb} mains power adapter  or computer \gls{usb} socket.
-\item The user can control output voltage and current limit through dials fitted to front of OSPS
+\item The user can control output voltage and current limit through dials fitted to front of OSPS.
 	\begin{enumerate}[label*=\arabic*.]
-	\item There may be  course and fine adjustment 
-	\item There may be the option to adjust each number in the set string by scrolling 
+	\item There may be  course and fine adjustment .
+	\item There may be the option to adjust each number in the setting string by scrolling. 
 	\end{enumerate}
-\item User can view the voltage and current with any additional equipment
+\item The user can view the voltage and current without any additional equipment.
 	\begin{enumerate}[label*=\arabic*.]
-	\item This may be using seven sgment displays
-	\item This may be using a screen
+	\item This may be using seven sgment displays.
+	\item This may be using a screen.
 	\end{enumerate}
-\item User can interface to OSPS through a computer \gls{gui} application
-\item User can log current measurments to a .csv file through a \gls{gui} application
-\item User can view/set the voltage/current through a \gls{gui} application
+\item The user can interface to OSPS through a computer \gls{gui} application.
+\item The user can view/set the voltage/current through a \gls{gui} application.
+\item The user can switch control over the power supply between the manual dials and \gls{gui} using a switch fitted to the front of \gls{osps}.
+\item The user can log current measurments to a .csv file through the \gls{gui} application.
+\item The user can create automation scripts which can control \gls{osps} settings over time without the need to be connected to a computer after the initial configuration.
 \end{enumerate}
 
 
 \section{Maintain and upgrade phase}
 \begin{enumerate}
-\item All design material will be made available for user to modify and reuse as they see fit.
+\item All design material will be made available for the user to modify and reuse as they see fit.
+\item Users will be encouraged to contribute to the development of \gls{osps}.
+	\begin{enumerate}[label*=\arabic*.]
+	\item The project repository will be made available online with hyperlinks to the repository in the construction manual and readable on a constructed \gls{osps}. 
+	\item A frontend to the repository will be used to track bugs (this is likely to be github).
+	\end{enumerate}
 \end{enumerate}
 
 
