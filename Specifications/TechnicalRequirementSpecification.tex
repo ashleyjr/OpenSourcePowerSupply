@@ -2,12 +2,19 @@
 \usepackage{geometry}
 \usepackage{enumitem}
 \usepackage[acronym,smallcaps]{glossaries}
+\usepackage{hyperref}
  \geometry{
 	 a4paper,
  	total={170mm,257mm},
  	left=20mm,
  	top=20mm,
  }
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=black,
+}
 
 \newacronym{3d}{3D}{Three Dimensional}
 \newacronym{bom}{BoM}{Bill of Materials}
@@ -29,19 +36,27 @@
 
 \section{Mechanics}
 \begin{enumerate}[label*=\arabic*.]
+\item The caseworks will be designed using FreeCAD (\url{http://www.freecadweb.org/}).
 \item The enclosing caseworks will be \gls{3d} printed.
-\item The caseworks will be designed using FreeCAD.
+\item The caseworks will contain mounting bosses to locate electronics.
+\item User interface
+	\begin{enumerate}[label*=\arabic*.]
+	\item Four directional buttons will be fitted to the top right of the front face. Up, down, left and right.
+	\item A two state switch will be used to move control of \gls{osps} between the mecahnical interface and the PC application.
+	\item A two state switch will be used to turn the output of \gls{osps} on and off.
+	\end{enumerate}
 \end{enumerate}
 
 
 
 \section{Electronics}
 \begin{enumerate}[label*=\arabic*.]
-\item Voltage and current adjstable
+\item The electronics will be designed using KiCAD (\url{ http://kicad-pcb.org/}).
+\item Adjustable voltage and current
 	\begin{enumerate}[label*=\arabic*.]
-	\item Voltage can be set with a resolution of 10mV
-	\item Current limit can be set with a resolution of 10mA
-	\item Voltage can be varied between 0V and power supply input to OSPS.
+	\item Voltage can be set and controlled with a resolution of 1mV
+	\item Current limit can be set and controlled with a resolution of 1mA
+	\item Voltage can be varied between $0V$ and ($V_{in} - 100mV)$. Where $V_{in}$ is the voltage of power supply input to OSPS.
 	\item How do we stop power supply providing current out of spec of the input supply? Ask the user to en sure in the spec? watch for voltage drop when overcurrent? Device won't 	function unless the data has been input for the supply used. Store in NV memory for next time, but confirm on each turn on. Running other power supplies out of spec is bad and not necessarily the same response over others (i.e. one supply might drop the voltage, others may just cut power). Alternatively, USB C has negotiation built in over power, so using this would avoid this problem. 
 	\end{enumerate}
 \item  USB Type C – if we have time, it would be good to put this support in
@@ -52,7 +67,7 @@
 	\item Up to 100W @ 20V
 	\item Project then becomes a tutorial on how USB C protocols work, which would be a useful by-product. 
 	\end{enumerate}
-\item The electronics will be designed using KiCAD.
+
 \end{enumerate}
 
 
@@ -60,6 +75,7 @@
 \begin{enumerate}[label*=\arabic*.]
 \item The firmware is any software functionailty running on the embbeded processor.
 \item The firmware will be implmented upon FreeRTOS.
+\item The firmware will log current and voltage readings to flash memory ervy $10ms$.
 \end{enumerate}
 
 
@@ -67,7 +83,7 @@
 \begin{enumerate}[label*=\arabic*.]
 \item The software is any software functionaility running on the user computer.
 \item The software must be cross platform compatible with Windows and Linux.
-\item The \gls{gui} application functionality will be implemented in Python2.7 which will rely upon Qt for \gls{gui} functionaility.
+\item The \gls{gui} application functionality will be implemented in Python (\url{https://www.python.org/})which will rely upon Qt (\url{https://www.qt.io/}) for \gls{gui} functionaility.
 \end{enumerate}
 
 
