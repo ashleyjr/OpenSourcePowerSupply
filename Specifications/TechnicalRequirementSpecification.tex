@@ -24,6 +24,8 @@
 \newacronym{pcb}{PCB}{Printed Circuit Board}
 \newacronym{smt}{SMT}{Surface Mount Technology}
 \newacronym{usb}{USB}{Universal Serial Bus}
+\newacronym{cots}{CotS}{Commercial off the Shelf}
+
 
 \title{Open Source Power Supply\\ Technical Requirement Specification}
 \author{Ashley J. Robinson \\ Henry S. Lovett}
@@ -36,13 +38,13 @@
 
 \section{Mechanics}
 \begin{enumerate}[label*=\arabic*.]
-\item The caseworks will be designed using FreeCAD (\url{http://www.freecadweb.org/}).
-\item The enclosing caseworks will be \gls{3d} printed.
+\item Two cases will be considered; a 3D printed enclosure and a \gls{cots} enclosure. By specification, no hazardous voltages are present in the design meaning the device can be safely used without an enclosure also.
+\item The 3D printable caseworks will be designed using FreeCAD (\url{http://www.freecadweb.org/}).
 \item The caseworks will contain mounting bosses to locate electronics.
 \item User interface
 	\begin{enumerate}[label*=\arabic*.]
 	\item Four directional buttons will be fitted to the top right of the front face. Up, down, left and right.
-	\item A two state switch will be used to move control of \gls{osps} between the mecahnical interface and the PC application.
+	\item A Rotary Encoder could be used for the interface instead. 
 	\item A two state switch will be used to turn the output of \gls{osps} on and off.
 	\end{enumerate}
 \end{enumerate}
@@ -52,20 +54,21 @@
 \section{Electronics}
 \begin{enumerate}[label*=\arabic*.]
 \item The electronics will be designed using KiCAD (\url{ http://kicad-pcb.org/}).
-\item Adjustable voltage and current
+\item Specifications
 	\begin{enumerate}[label*=\arabic*.]
-	\item Voltage can be set and controlled with a resolution of 1mV
-	\item Current limit can be set and controlled with a resolution of 1mA
-	\item Voltage can be varied between $0V$ and ($V_{in} - 100mV)$. Where $V_{in}$ is the voltage of power supply input to OSPS.
-	\item How do we stop power supply providing current out of spec of the input supply? Ask the user to en sure in the spec? watch for voltage drop when overcurrent? Device won't 	function unless the data has been input for the supply used. Store in NV memory for next time, but confirm on each turn on. Running other power supplies out of spec is bad and not necessarily the same response over others (i.e. one supply might drop the voltage, others may just cut power). Alternatively, USB C has negotiation built in over power, so using this would avoid this problem. 
+	\item Voltage can be set and controlled with a resolution of 10mV
+	\item Current limit can be set and controlled with a resolution of 10mA
+	\item Voltage and current can be varied by at least $0V$ and ($V_{in} - 100mV)$ (where $V_{in}$ is the input supply to the device). When the supply allows, the voltage and current output will be larger by utilising a Boost \gls{smps}.
+	\item Overcurrent conditions will cut the power and alert the user by the Front panel UI or on the Desktop application. No scaling of the voltage will occur to simplify the design and reduce cost. 
+	\item The input supply specifications will need to be input before the device can be used. This will be used to calculate the extent of the output current and voltage. 
 	\end{enumerate}
-\item  USB Type C – if we have time, it would be good to put this support in
+\item  USB Type C – if time allows, USB support will be added
 	\begin{enumerate}[label*=\arabic*.]
-	\item This is likely to be the new standard connector for all things computer.
+	\item This is likely to be the new standard connector for all things computer and mobile.
 	\item No footprint issues for supporting different barrel jacks.
-	\item Protocol supports negotiating for power, meaning we know what we can do. 
+	\item Protocol supports negotiating for power so the \gls{osps} will know the input supply characteristics. 
 	\item Up to 100W @ 20V
-	\item Project then becomes a tutorial on how USB C protocols work, which would be a useful by-product. 
+	\item A clear understanding and use of the USB Power Delivery Protocol will be included within the project. 
 	\end{enumerate}
 
 \end{enumerate}
@@ -76,14 +79,17 @@
 \item The firmware is any software functionailty running on the embbeded processor.
 \item The firmware will be implmented upon FreeRTOS.
 \item The firmware will log current and voltage readings to flash memory ervy $10ms$.
+\item The firmware will control the current and voltage output.
+\item The firmware will be controlled by the Front panel UI, or by the Software.
 \end{enumerate}
 
 
 \section{Software}
 \begin{enumerate}[label*=\arabic*.]
 \item The software is any software functionaility running on the user computer.
-\item The software must be cross platform compatible with Windows and Linux.
+\item The software must be cross platform compatible with Windows, Linux and Mac.
 \item The \gls{gui} application functionality will be implemented in Python (\url{https://www.python.org/})which will rely upon Qt (\url{https://www.qt.io/}) for \gls{gui} functionaility.
+\item The software will control the \gls{osps} and show status information of the device. 
 \end{enumerate}
 
 
