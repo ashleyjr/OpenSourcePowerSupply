@@ -33,6 +33,8 @@ LIBS:STM32F302R8T6
 LIBS:C0603C221J5GACTU
 LIBS:wurth_742792651
 LIBS:ABLS2-8.000MHZ-D4Y-T
+LIBS:header-7x1-254
+LIBS:header-3x1-254
 LIBS:osps-cache
 EELAYER 25 0
 EELAYER END
@@ -116,55 +118,6 @@ F 4 "0603" V 2200 1550 60  0000 C CNN "Package"
 	1    2150 1350
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	5500 5800 5500 6350
-Wire Wire Line
-	5500 5800 5450 5800
-Wire Wire Line
-	5450 6200 5500 6200
-Connection ~ 5500 6200
-Wire Wire Line
-	5450 6100 5500 6100
-Connection ~ 5500 6100
-Wire Wire Line
-	5450 6000 5500 6000
-Connection ~ 5500 6000
-Wire Wire Line
-	5450 5900 5500 5900
-Connection ~ 5500 5900
-Wire Wire Line
-	2650 1650 2650 2000
-Wire Wire Line
-	2650 2700 2650 2600
-Wire Wire Line
-	2150 1650 2150 2000
-Wire Wire Line
-	2150 1050 2150 1000
-Wire Wire Line
-	5500 1500 5450 1500
-Connection ~ 5500 1400
-Connection ~ 5500 1300
-Connection ~ 5500 1500
-Wire Wire Line
-	5500 1400 5450 1400
-Wire Wire Line
-	5450 1300 5500 1300
-Wire Wire Line
-	5450 1200 5500 1200
-Wire Wire Line
-	5650 1600 5650 1650
-Wire Wire Line
-	6150 1600 6150 1650
-Connection ~ 5650 1600
-Wire Wire Line
-	6650 1600 6650 1650
-Connection ~ 6150 1600
-Wire Wire Line
-	7150 1600 7150 1650
-Connection ~ 6650 1600
-Wire Wire Line
-	7650 1050 7650 1650
-Connection ~ 7150 1600
 $Comp
 L C0603C221J5GACTU C?
 U 1 1 5786B50A
@@ -225,21 +178,6 @@ F 4 "0603" V 7750 2050 60  0000 C CNN "Package"
 	1    7650 1850
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	7650 2050 7650 2150
-Wire Wire Line
-	5650 2100 7650 2100
-Wire Wire Line
-	5650 2100 5650 2050
-Wire Wire Line
-	6150 2050 6150 2100
-Connection ~ 6150 2100
-Wire Wire Line
-	6650 2050 6650 2100
-Connection ~ 6650 2100
-Wire Wire Line
-	7150 2050 7150 2100
-Connection ~ 7150 2100
 $Comp
 L WURTH_ELEKTRONIK__742792651__FERRITE,_BEAD,_0603,_0.2OHM,_1A F??
 U 1 1 5786BBE5
@@ -252,16 +190,6 @@ F 4 "600R@100MHz" H 6100 900 60  0000 C CNN "Impedance"
 	1    5750 1100
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	5450 1600 7650 1600
-Connection ~ 5500 1600
-Wire Wire Line
-	5500 1200 5500 1600
-Wire Wire Line
-	5750 1100 5450 1100
-Wire Wire Line
-	7650 1100 6450 1100
-Connection ~ 7650 1600
 $Comp
 L GND #PWR?
 U 1 1 5786CB53
@@ -284,8 +212,6 @@ F 3 "" H 7650 1050 50  0000 C CNN
 	1    7650 1050
 	1    0    0    -1  
 $EndComp
-Connection ~ 7650 2100
-Connection ~ 7650 1100
 $Comp
 L CRCW060310K0FKEA R?
 U 1 1 5786DC83
@@ -310,8 +236,6 @@ F 4 "0603" V 2200 2500 60  0000 C CNN "Package"
 	1    2150 2300
 	0    1    1    0   
 $EndComp
-Connection ~ 2650 1800
-Connection ~ 2150 1900
 $Comp
 L +3.3V #PWR?
 U 1 1 5786DF04
@@ -334,10 +258,6 @@ F 3 "" H 2150 2700 50  0000 C CNN
 	1    2150 2700
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	2150 2700 2150 2600
-Wire Wire Line
-	2650 1050 2650 1000
 Text Label 3050 1900 0    60   ~ 0
 BOOT0
 Text Label 3050 1800 0    60   ~ 0
@@ -346,10 +266,6 @@ Text Notes 3200 1400 0    60   ~ 0
 To reset processor short \nDNF pull down on NRST
 Text Notes 650  1400 0    60   ~ 0
 BOOT0 = 0 - Flash\nBOOT0 = 1 - Bootloader
-Wire Wire Line
-	4250 1800 2650 1800
-Wire Wire Line
-	4250 1900 2150 1900
 $Comp
 L ABLS2-8.000MHZ-D4Y-T U?
 U 1 1 57870966
@@ -385,19 +301,6 @@ F 4 "0603" V 5750 5250 60  0000 C CNN "Package"
 	1    5650 5050
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	5450 4500 5950 4500
-Wire Wire Line
-	5650 5400 6950 5400
-Wire Wire Line
-	6950 4400 6950 4850
-Wire Wire Line
-	5450 4400 6950 4400
-Wire Wire Line
-	6950 4500 6550 4500
-Connection ~ 6950 4500
-Wire Wire Line
-	6950 5250 6950 5500
 $Comp
 L GND #PWR?
 U 1 1 578728D5
@@ -409,10 +312,225 @@ F 3 "" H 6950 5500 50  0000 C CNN
 	1    6950 5500
 	1    0    0    -1  
 $EndComp
+$Comp
+L Header,7x1,2.54mm U?
+U 1 1 5786AD4A
+P 1550 6650
+F 0 "U?" H 1950 6600 60  0000 C CNN
+F 1 "Header,7x1,2.54mm" H 2100 7550 60  0000 C CNN
+F 2 "" H 1550 6650 60  0000 C CNN
+F 3 "" H 1550 6650 60  0000 C CNN
+	1    1550 6650
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	5500 5800 5500 5900
+Wire Wire Line
+	5500 5900 5500 6000
+Wire Wire Line
+	5500 6000 5500 6100
+Wire Wire Line
+	5500 6100 5500 6200
+Wire Wire Line
+	5500 6200 5500 6350
+Wire Wire Line
+	5500 5800 5450 5800
+Wire Wire Line
+	5450 6200 5500 6200
+Connection ~ 5500 6200
+Wire Wire Line
+	5450 6100 5500 6100
+Connection ~ 5500 6100
+Wire Wire Line
+	5450 6000 5500 6000
+Connection ~ 5500 6000
+Wire Wire Line
+	5450 5900 5500 5900
+Connection ~ 5500 5900
+Wire Wire Line
+	2650 1650 2650 1800
+Wire Wire Line
+	2650 1800 2650 2000
+Wire Wire Line
+	2650 2700 2650 2600
+Wire Wire Line
+	2150 1650 2150 1900
+Wire Wire Line
+	2150 1900 2150 2000
+Wire Wire Line
+	2150 1050 2150 1000
+Wire Wire Line
+	5500 1500 5450 1500
+Connection ~ 5500 1400
+Connection ~ 5500 1300
+Connection ~ 5500 1500
+Wire Wire Line
+	5500 1400 5450 1400
+Wire Wire Line
+	5450 1300 5500 1300
+Wire Wire Line
+	5450 1200 5500 1200
+Wire Wire Line
+	5650 1600 5650 1650
+Wire Wire Line
+	6150 1600 6150 1650
+Connection ~ 5650 1600
+Wire Wire Line
+	6650 1600 6650 1650
+Connection ~ 6150 1600
+Wire Wire Line
+	7150 1600 7150 1650
+Connection ~ 6650 1600
+Wire Wire Line
+	7650 1050 7650 1100
+Wire Wire Line
+	7650 1100 7650 1600
+Wire Wire Line
+	7650 1600 7650 1650
+Connection ~ 7150 1600
+Wire Wire Line
+	7650 2050 7650 2100
+Wire Wire Line
+	7650 2100 7650 2150
+Wire Wire Line
+	5650 2100 6150 2100
+Wire Wire Line
+	6150 2100 6650 2100
+Wire Wire Line
+	6650 2100 7150 2100
+Wire Wire Line
+	7150 2100 7650 2100
+Wire Wire Line
+	5650 2100 5650 2050
+Wire Wire Line
+	6150 2050 6150 2100
+Connection ~ 6150 2100
+Wire Wire Line
+	6650 2050 6650 2100
+Connection ~ 6650 2100
+Wire Wire Line
+	7150 2050 7150 2100
+Connection ~ 7150 2100
+Wire Wire Line
+	5450 1600 5500 1600
+Wire Wire Line
+	5500 1600 5650 1600
+Wire Wire Line
+	5650 1600 6150 1600
+Wire Wire Line
+	6150 1600 6650 1600
+Wire Wire Line
+	6650 1600 7150 1600
+Wire Wire Line
+	7150 1600 7650 1600
+Connection ~ 5500 1600
+Wire Wire Line
+	5500 1200 5500 1300
+Wire Wire Line
+	5500 1300 5500 1400
+Wire Wire Line
+	5500 1400 5500 1500
+Wire Wire Line
+	5500 1500 5500 1600
+Wire Wire Line
+	5750 1100 5450 1100
+Wire Wire Line
+	7650 1100 6450 1100
+Connection ~ 7650 1600
+Connection ~ 7650 2100
+Connection ~ 7650 1100
+Connection ~ 2650 1800
+Connection ~ 2150 1900
+Wire Wire Line
+	2150 2700 2150 2600
+Wire Wire Line
+	2650 1050 2650 1000
+Wire Wire Line
+	4250 1800 2650 1800
+Wire Wire Line
+	4250 1900 2150 1900
+Wire Wire Line
+	5450 4500 5650 4500
+Wire Wire Line
+	5650 4500 5950 4500
+Wire Wire Line
+	5650 5400 6950 5400
+Wire Wire Line
+	6950 4400 6950 4500
+Wire Wire Line
+	6950 4500 6950 4850
+Wire Wire Line
+	5450 4400 6950 4400
+Wire Wire Line
+	6950 4500 6550 4500
+Connection ~ 6950 4500
+Wire Wire Line
+	6950 5250 6950 5400
+Wire Wire Line
+	6950 5400 6950 5500
 Connection ~ 6950 5400
 Wire Wire Line
 	5650 4850 5650 4500
 Connection ~ 5650 4500
 Wire Wire Line
 	5650 5400 5650 5250
+Wire Wire Line
+	1550 7250 2600 7250
+Wire Wire Line
+	1550 7150 2600 7150
+Wire Wire Line
+	1550 7050 2600 7050
+Wire Wire Line
+	1550 6950 2600 6950
+Wire Wire Line
+	1550 6850 2600 6850
+Wire Wire Line
+	1550 6750 2600 6750
+Wire Wire Line
+	4250 3600 3200 3600
+Wire Wire Line
+	4250 3700 3200 3700
+Wire Wire Line
+	4250 3800 3200 3800
+Wire Wire Line
+	4250 4300 3200 4300
+Wire Wire Line
+	4250 4400 3200 4400
+Text Label 3250 3600 0    60   ~ 0
+SYS_JTMS-SWDIO
+Text Label 3250 3700 0    60   ~ 0
+SYS_JTCK-SWCLK
+Text Label 3250 3800 0    60   ~ 0
+SYS_JTDI
+Text Label 3250 4300 0    60   ~ 0
+SYS_JTDO-TRACESWO
+Text Label 3250 4400 0    60   ~ 0
+SYS_NJTRST
+$Comp
+L GND #PWR?
+U 1 1 5786C411
+P 1650 7450
+F 0 "#PWR?" H 1650 7200 50  0001 C CNN
+F 1 "GND" H 1650 7300 50  0000 C CNN
+F 2 "" H 1650 7450 50  0000 C CNN
+F 3 "" H 1650 7450 50  0000 C CNN
+	1    1650 7450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1650 7450 1650 7350
+Wire Wire Line
+	1650 7350 1550 7350
+Text Label 1600 7250 0    60   ~ 0
+SYS_JTMS-SWDIO
+Text Label 1600 7150 0    60   ~ 0
+SYS_JTCK-SWCLK
+Text Label 1600 7050 0    60   ~ 0
+SYS_JTDO-TRACESWO
+Text Label 1600 6950 0    60   ~ 0
+NRST
+Text Label 1600 6850 0    60   ~ 0
+SYS_JTDI
+Text Label 1600 6750 0    60   ~ 0
+SYS_NJTRST
 $EndSCHEMATC

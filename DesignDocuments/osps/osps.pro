@@ -1,4 +1,4 @@
-update=13/07/2016 21:12:35
+update=13/07/2016 21:58:51
 version=1
 last_client=kicad
 [pcbnew]
@@ -63,3 +63,5 @@ LibName31=libraries/STM32F302R8T6
 LibName32=libraries/C0603C221J5GACTU
 LibName33=libraries/wurth_742792651
 LibName34=libraries/ABLS2-8.000MHZ-D4Y-T
+LibName35=libraries/header-7x1-254
+LibName36=libraries/header-3x1-254
