@@ -1,0 +1,19 @@
+EESchema-LIBRARY Version 2.3
+#encoding utf-8
+#
+# Header,3x1,2.54mm
+#
+DEF Header,3x1,2.54mm U 0 40 Y Y 1 F N
+F0 "U" 250 500 60 H V C CNN
+F1 "Header,3x1,2.54mm" 650 0 60 H V C CNN
+F2 "" 0 0 60 H V C CNN
+F3 "" 0 0 60 H V C CNN
+DRAW
+S 200 50 450 450 0 1 0 N
+X 1 1 0 350 200 R 50 50 1 1 I
+X 2 2 0 250 200 R 50 50 1 1 I
+X 3 3 0 150 200 R 50 50 1 1 I
+ENDDRAW
+ENDDEF
+#
+#End Library

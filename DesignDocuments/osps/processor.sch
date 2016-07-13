@@ -533,4 +533,52 @@ Text Label 1600 6850 0    60   ~ 0
 SYS_JTDI
 Text Label 1600 6750 0    60   ~ 0
 SYS_NJTRST
+$Comp
+L Header,3x1,2.54mm U?
+U 1 1 5786B8E8
+P 4100 7000
+F 0 "U?" H 4500 7000 60  0000 C CNN
+F 1 "Header,3x1,2.54mm" H 4750 7550 60  0000 C CNN
+F 2 "" H 4100 7000 60  0000 C CNN
+F 3 "" H 4100 7000 60  0000 C CNN
+	1    4100 7000
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	4100 7150 5050 7150
+Wire Wire Line
+	4100 7250 5050 7250
+Wire Wire Line
+	5450 3000 6500 3000
+Text Label 5500 3000 0    60   ~ 0
+USART1_RX_DEBUG
+Wire Wire Line
+	5450 2900 6500 2900
+Text Label 5500 2900 0    60   ~ 0
+USART1_TX_DEBUG
+$Comp
+L GND #PWR?
+U 1 1 5786D4A1
+P 4200 7450
+F 0 "#PWR?" H 4200 7200 50  0001 C CNN
+F 1 "GND" H 4200 7300 50  0000 C CNN
+F 2 "" H 4200 7450 50  0000 C CNN
+F 3 "" H 4200 7450 50  0000 C CNN
+	1    4200 7450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4200 7450 4200 7350
+Wire Wire Line
+	4200 7350 4100 7350
+Text Label 4150 7250 0    60   ~ 0
+USART1_RX_DEBUG
+Text Label 4150 7150 0    60   ~ 0
+USART1_TX_DEBUG
+Text Notes 1350 6500 0    60   ~ 0
+Programming header\n(Place net names in silk)
+Text Notes 3900 6900 0    60   ~ 0
+DEBUG USART\n(Place net names in silk)
+Text Notes 6850 3000 0    60   ~ 0
+RX/TX relative to processor
 $EndSCHEMATC
