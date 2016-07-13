@@ -1,4 +1,4 @@
-update=13/07/2016 09:12:25
+update=13/07/2016 19:14:00
 version=1
 last_client=kicad
 [pcbnew]
@@ -60,3 +60,4 @@ LibName28=contrib
 LibName29=valves
 LibName30=libraries/CRCW060310K0FKEA
 LibName31=libraries/STM32F302R8T6
+LibName32=libraries/C0603C221J5GACTU
