@@ -1,4 +1,4 @@
-update=13/07/2016 22:14:16
+update=14/07/2016 20:08:06
 version=1
 last_client=kicad
 [pcbnew]
@@ -65,3 +65,6 @@ LibName33=libraries/wurth_742792651
 LibName34=libraries/ABLS2-8.000MHZ-D4Y-T
 LibName35=libraries/header-7x1-254
 LibName36=libraries/header-3x1-254
+LibName37=libraries/header-8x1-254
+LibName38=libraries/header-6x1-254
+LibName39=libraries/header-10x1-254

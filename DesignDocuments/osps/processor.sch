@@ -35,6 +35,9 @@ LIBS:wurth_742792651
 LIBS:ABLS2-8.000MHZ-D4Y-T
 LIBS:header-7x1-254
 LIBS:header-3x1-254
+LIBS:header-8x1-254
+LIBS:header-6x1-254
+LIBS:header-10x1-254
 LIBS:osps-cache
 EELAYER 25 0
 EELAYER END
@@ -324,15 +327,7 @@ F 3 "" H 1550 6650 60  0000 C CNN
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	5500 5800 5500 5900
-Wire Wire Line
-	5500 5900 5500 6000
-Wire Wire Line
-	5500 6000 5500 6100
-Wire Wire Line
-	5500 6100 5500 6200
-Wire Wire Line
-	5500 6200 5500 6350
+	5500 5800 5500 6350
 Wire Wire Line
 	5500 5800 5450 5800
 Wire Wire Line
@@ -348,15 +343,11 @@ Wire Wire Line
 	5450 5900 5500 5900
 Connection ~ 5500 5900
 Wire Wire Line
-	2650 1650 2650 1800
-Wire Wire Line
-	2650 1800 2650 2000
+	2650 1650 2650 2000
 Wire Wire Line
 	2650 2700 2650 2600
 Wire Wire Line
-	2150 1650 2150 1900
-Wire Wire Line
-	2150 1900 2150 2000
+	2150 1650 2150 2000
 Wire Wire Line
 	2150 1050 2150 1000
 Wire Wire Line
@@ -382,24 +373,12 @@ Wire Wire Line
 	7150 1600 7150 1650
 Connection ~ 6650 1600
 Wire Wire Line
-	7650 1050 7650 1100
-Wire Wire Line
-	7650 1100 7650 1600
-Wire Wire Line
-	7650 1600 7650 1650
+	7650 1050 7650 1650
 Connection ~ 7150 1600
 Wire Wire Line
-	7650 2050 7650 2100
+	7650 2050 7650 2150
 Wire Wire Line
-	7650 2100 7650 2150
-Wire Wire Line
-	5650 2100 6150 2100
-Wire Wire Line
-	6150 2100 6650 2100
-Wire Wire Line
-	6650 2100 7150 2100
-Wire Wire Line
-	7150 2100 7650 2100
+	5650 2100 7650 2100
 Wire Wire Line
 	5650 2100 5650 2050
 Wire Wire Line
@@ -412,26 +391,10 @@ Wire Wire Line
 	7150 2050 7150 2100
 Connection ~ 7150 2100
 Wire Wire Line
-	5450 1600 5500 1600
-Wire Wire Line
-	5500 1600 5650 1600
-Wire Wire Line
-	5650 1600 6150 1600
-Wire Wire Line
-	6150 1600 6650 1600
-Wire Wire Line
-	6650 1600 7150 1600
-Wire Wire Line
-	7150 1600 7650 1600
+	5450 1600 7650 1600
 Connection ~ 5500 1600
 Wire Wire Line
-	5500 1200 5500 1300
-Wire Wire Line
-	5500 1300 5500 1400
-Wire Wire Line
-	5500 1400 5500 1500
-Wire Wire Line
-	5500 1500 5500 1600
+	5500 1200 5500 1600
 Wire Wire Line
 	5750 1100 5450 1100
 Wire Wire Line
@@ -450,24 +413,18 @@ Wire Wire Line
 Wire Wire Line
 	4250 1900 2150 1900
 Wire Wire Line
-	5450 4500 5650 4500
-Wire Wire Line
-	5650 4500 5950 4500
+	5450 4500 5950 4500
 Wire Wire Line
 	5650 5400 6950 5400
 Wire Wire Line
-	6950 4400 6950 4500
-Wire Wire Line
-	6950 4500 6950 4850
+	6950 4400 6950 4850
 Wire Wire Line
 	5450 4400 6950 4400
 Wire Wire Line
 	6950 4500 6550 4500
 Connection ~ 6950 4500
 Wire Wire Line
-	6950 5250 6950 5400
-Wire Wire Line
-	6950 5400 6950 5500
+	6950 5250 6950 5500
 Connection ~ 6950 5400
 Wire Wire Line
 	5650 4850 5650 4500
@@ -581,4 +538,48 @@ Text Notes 3900 6900 0    60   ~ 0
 DEBUG USART\n(Place net names in silk)
 Text Notes 6850 3000 0    60   ~ 0
 RX/TX relative to processor
+$Comp
+L Header,8x1,2.54mm CN?
+U 1 1 5787EC1C
+P 9000 4100
+F 0 "CN?" H 9300 5000 60  0000 C CNN
+F 1 "Header,8x1,2.54mm" H 9000 3950 60  0000 C CNN
+F 2 "" H 9000 4100 60  0000 C CNN
+F 3 "" H 9000 4100 60  0000 C CNN
+	1    9000 4100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Header,8x1,2.54mm CN?
+U 1 1 5787EE1A
+P 10100 4450
+F 0 "CN?" H 10500 4350 60  0000 C CNN
+F 1 "Header,8x1,2.54mm" H 10100 5400 60  0000 C CNN
+F 2 "" H 10100 4450 60  0000 C CNN
+F 3 "" H 10100 4450 60  0000 C CNN
+	1    10100 4450
+	-1   0    0    1   
+$EndComp
+$Comp
+L Header,6x1,2.54mm CN?
+U 1 1 5787F901
+P 9000 5650
+F 0 "CN?" H 9300 6750 60  0000 C CNN
+F 1 "Header,6x1,2.54mm" H 9050 5900 60  0000 C CNN
+F 2 "" H 9000 5650 60  0000 C CNN
+F 3 "" H 9000 5650 60  0000 C CNN
+	1    9000 5650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Header,10x1,2.54mm CN?
+U 1 1 5787FA71
+P 10100 2650
+F 0 "CN?" H 10450 3000 60  0000 C CNN
+F 1 "Header,10x1,2.54mm" H 10100 4200 60  0000 C CNN
+F 2 "" H 10100 2650 60  0000 C CNN
+F 3 "" H 10100 2650 60  0000 C CNN
+	1    10100 2650
+	-1   0    0    1   
+$EndComp
 $EndSCHEMATC
