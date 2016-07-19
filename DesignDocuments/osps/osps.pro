@@ -1,4 +1,4 @@
-update=14/07/2016 20:08:06
+update=19/07/2016 22:25:36
 version=1
 last_client=kicad
 [pcbnew]
@@ -68,3 +68,4 @@ LibName36=libraries/header-3x1-254
 LibName37=libraries/header-8x1-254
 LibName38=libraries/header-6x1-254
 LibName39=libraries/header-10x1-254
+LibName40=libraries/header-8x2-254
