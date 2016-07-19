@@ -43,7 +43,7 @@ EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 2 2
+Sheet 2 3
 Title ""
 Date ""
 Rev ""
@@ -524,10 +524,6 @@ Wire Wire Line
 	4200 7450 4200 7350
 Wire Wire Line
 	4200 7350 4100 7350
-Text Label 4150 7250 0    60   ~ 0
-USART1_RX_DEBUG
-Text Label 4150 7150 0    60   ~ 0
-USART1_TX_DEBUG
 Text Notes 1350 6500 0    60   ~ 0
 Programming header\n(Place net names in silk)
 Text Notes 3900 6900 0    60   ~ 0
@@ -674,10 +670,6 @@ Wire Wire Line
 	7600 4200 8800 4200
 Wire Wire Line
 	8800 3900 7750 3900
-Text Label 9950 5550 0    60   ~ 0
-PA3
-Text Label 9950 5450 0    60   ~ 0
-PA2
 Text Label 9950 5350 0    60   ~ 0
 PA10
 Text Label 9950 5150 0    60   ~ 0
@@ -789,10 +781,6 @@ Text Label 5500 2600 0    60   ~ 0
 PC1
 Text Label 5500 2500 0    60   ~ 0
 PC0
-Text Label 3250 2600 0    60   ~ 0
-PA3
-Text Label 3250 2500 0    60   ~ 0
-PA2
 Text Label 3250 3300 0    60   ~ 0
 PA10
 Text Label 3250 4500 0    60   ~ 0
@@ -817,4 +805,16 @@ Text Label 3250 4900 0    60   ~ 0
 PB9
 Text Label 3250 4800 0    60   ~ 0
 PB8
+Text Label 3250 2500 0    60   ~ 0
+PA2_USART2_TX
+Text Label 3250 2600 0    60   ~ 0
+PA3_USART2_RX
+Text Label 4150 7150 0    60   ~ 0
+PA2_USART2_TX
+Text Label 4150 7250 0    60   ~ 0
+PA3_USART2_RX
+Text Label 9950 5450 0    60   ~ 0
+PA2_USART2_TX
+Text Label 9950 5550 0    60   ~ 0
+PA3_USART2_RX
 $EndSCHEMATC
