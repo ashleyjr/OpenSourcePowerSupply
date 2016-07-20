@@ -1,4 +1,7 @@
 *.FCStd1
+*.FCStd2
+*.FCStd3
 *.bak
 *.dcm
 *.bck
+*.o
