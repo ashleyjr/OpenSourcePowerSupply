@@ -59,6 +59,13 @@ static void MX_USART2_UART_Init(void);
 
 /* USER CODE BEGIN 0 */
 
+void lcdDelay(void){
+	uint32_t i;
+	i = 0;
+	while(i < 100000) i++;
+}
+
+
 uint8_t lcdReadBus(void){
 	uint8_t data;
 	
@@ -86,32 +93,95 @@ uint8_t lcdReadBus(void){
 	return data;
 }
 
-void lcdWriteBus(uint8_t data){
+void lcdWriteBus(uint8_t rs, uint8_t data){
 	// Configure bus as output
 	GPIO_InitTypeDef GPIO_InitStruct;
 	
+	/*Configure GPIO pins : DISP_DB4_Pin DISP_DB5_Pin */
 	GPIO_InitStruct.Pin = DISP_DB4_Pin|DISP_DB5_Pin;
 	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
 	GPIO_InitStruct.Pull = GPIO_NOPULL;
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
 	HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
-	
-	GPIO_InitStruct.Pin = DISP_DB6_Pin|DISP_DB7_Pin;
+
+	/*Configure GPIO pins : DISP_DB6_Pin DISP_DB7_Pin DISP_E_Pin DISP_RW_Pin */
+	GPIO_InitStruct.Pin = DISP_DB6_Pin|DISP_DB7_Pin|DISP_E_Pin|DISP_RW_Pin;
 	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
 	GPIO_InitStruct.Pull = GPIO_NOPULL;
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
 	HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
+	/*Configure GPIO pin : DISP_RS_Pin */
+	GPIO_InitStruct.Pin = DISP_RS_Pin;
+	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
+	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+	HAL_GPIO_Init(DISP_RS_GPIO_Port, &GPIO_InitStruct);
 	
-	HAL_GPIO_WritePin(GPIOB, DISP_DB4_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB5_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOC, DISP_DB6_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOC, DISP_DB7_Pin, GPIO_PIN_RESET);
 	
-	if(data & 0x01)	HAL_GPIO_WritePin(GPIOB, DISP_DB4_Pin, GPIO_PIN_RESET);
-	if(data & 0x02)	HAL_GPIO_WritePin(GPIOB, DISP_DB5_Pin, GPIO_PIN_RESET);
-	if(data & 0x04)	HAL_GPIO_WritePin(GPIOC, DISP_DB6_Pin, GPIO_PIN_RESET);
-	if(data & 0x08)	HAL_GPIO_WritePin(GPIOC, DISP_DB7_Pin, GPIO_PIN_RESET);
+	lcdDelay();
+	if(rs)	HAL_GPIO_WritePin(DISP_RS_GPIO_Port, DISP_RS_Pin, GPIO_PIN_SET);
+	else 	HAL_GPIO_WritePin(DISP_RS_GPIO_Port, DISP_RS_Pin, GPIO_PIN_RESET);
+	
+	
+	HAL_GPIO_WritePin(GPIOC, DISP_RW_Pin, GPIO_PIN_RESET);
+	
+	lcdDelay();
+	
+	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_SET);
+	
+	lcdDelay();
+	
+	if(data & 0x01)	HAL_GPIO_WritePin(GPIOB, DISP_DB4_Pin, GPIO_PIN_SET);
+	else			HAL_GPIO_WritePin(GPIOB, DISP_DB4_Pin, GPIO_PIN_RESET);
+		
+	if(data & 0x02)	HAL_GPIO_WritePin(GPIOB, DISP_DB5_Pin, GPIO_PIN_SET);
+	else			HAL_GPIO_WritePin(GPIOB, DISP_DB5_Pin, GPIO_PIN_RESET);
+	
+	if(data & 0x04)	HAL_GPIO_WritePin(GPIOC, DISP_DB6_Pin, GPIO_PIN_SET);
+	else			HAL_GPIO_WritePin(GPIOC, DISP_DB6_Pin, GPIO_PIN_RESET);
+		
+	if(data & 0x08)	HAL_GPIO_WritePin(GPIOC, DISP_DB7_Pin, GPIO_PIN_SET);
+	else			HAL_GPIO_WritePin(GPIOC, DISP_DB7_Pin, GPIO_PIN_RESET);
+	
+	lcdDelay();
+	
+	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_RESET);
+	
+	lcdDelay();
 }
+
+
+void lcdInit(void){
+	lcdWriteBus(0,0x03);
+	
+	lcdWriteBus(0,0x02);
+	lcdWriteBus(0,0x0F);
+	
+	lcdWriteBus(0,0x02);
+	lcdWriteBus(0,0x0F);
+	
+	lcdWriteBus(0,0x00);
+	lcdWriteBus(0,0x0F);
+	
+	lcdWriteBus(0,0x00);
+	lcdWriteBus(0,0x01);
+	
+	lcdWriteBus(0,0x00);
+	lcdWriteBus(0,0x07);
+	
+	lcdWriteBus(0,0x08);
+	lcdWriteBus(0,0x00);
+	
+	lcdWriteBus(0,0x04);
+	lcdWriteBus(0,0x00);
+	
+	lcdWriteBus(1,0x03);
+	lcdWriteBus(1,0x03);
+	
+}
+
+
 
 
 /* USER CODE END 0 */
@@ -148,324 +218,8 @@ int main(void)
 	
 	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
 	
-
- 
 	
-
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_SET);
-	
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_DB7_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOC, DISP_DB6_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB5_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB4_Pin, GPIO_PIN_SET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_RESET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	
-	
-	
-	
-	
-	
-
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_SET);
-	
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_DB7_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOC, DISP_DB6_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB5_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB4_Pin, GPIO_PIN_RESET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_RESET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	
-	
-	
-	
-
-	
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_SET);
-	
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_DB7_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOC, DISP_DB6_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB5_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB4_Pin, GPIO_PIN_SET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_RESET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_SET);
-	
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_DB7_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOC, DISP_DB6_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB5_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB4_Pin, GPIO_PIN_RESET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_RESET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_SET);
-	
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_DB7_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOC, DISP_DB6_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB5_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB4_Pin, GPIO_PIN_SET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_RESET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	
-	
-	
-	
-	
-	
-
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_SET);
-	
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_DB7_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOC, DISP_DB6_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB5_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB4_Pin, GPIO_PIN_RESET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_RESET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	
-	
-	
-	
-	
-	
-
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_SET);
-	
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_DB7_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOC, DISP_DB6_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB5_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB4_Pin, GPIO_PIN_SET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_RESET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	
-	
-	
-
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_SET);
-	
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_DB7_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOC, DISP_DB6_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB5_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB4_Pin, GPIO_PIN_SET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_RESET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	
-	
-	
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_SET);
-	
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_DB7_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOC, DISP_DB6_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB5_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB4_Pin, GPIO_PIN_RESET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_RESET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	
-	
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_SET);
-	
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_DB7_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOC, DISP_DB6_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB5_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB4_Pin, GPIO_PIN_SET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_RESET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_SET);
-	
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_DB7_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOC, DISP_DB6_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB5_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB4_Pin, GPIO_PIN_RESET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_RESET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	
-	
-	
-	
-	
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_SET);
-	
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_DB7_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOC, DISP_DB6_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB5_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB4_Pin, GPIO_PIN_SET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_RESET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	
-	
-	
-	
-	
-	HAL_GPIO_WritePin(DISP_RS_GPIO_Port, DISP_RS_Pin, GPIO_PIN_SET);
-	
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-		
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_SET);
-	
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_DB7_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOC, DISP_DB6_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB5_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB4_Pin, GPIO_PIN_SET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_RESET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	
-	
-	
-	
-	
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_SET);
-	
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_DB7_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOC, DISP_DB6_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB5_Pin, GPIO_PIN_SET);
-	HAL_GPIO_WritePin(GPIOB, DISP_DB4_Pin, GPIO_PIN_SET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_RESET);
-
-	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	lcdInit();
 	
 	
 	//buffer[0] = lcdReadBus() + 65;
