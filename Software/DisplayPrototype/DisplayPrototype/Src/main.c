@@ -173,9 +173,6 @@ void lcdInit(void){
 	lcdWriteBus(0,0x08);
 	lcdWriteBus(0,0x00);
 	
-	lcdWriteBus(0,0x04);
-	lcdWriteBus(0,0x00);
-	
 	lcdWriteBus(1,0x03);
 	lcdWriteBus(1,0x03);
 	
