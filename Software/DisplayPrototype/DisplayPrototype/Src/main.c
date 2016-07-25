@@ -153,28 +153,44 @@ void lcdWriteBus(uint8_t rs, uint8_t data){
 
 
 void lcdInit(void){
+	
+	// Top nibble first
+	
+	
+	lcdWriteBus(0,0x03);
+	lcdWriteBus(0,0x03);
 	lcdWriteBus(0,0x03);
 	
+
+	lcdWriteBus(0,0x02);
 	lcdWriteBus(0,0x02);
 	lcdWriteBus(0,0x0F);
-	
-	lcdWriteBus(0,0x02);
-	lcdWriteBus(0,0x0F);
-	
 	lcdWriteBus(0,0x00);
-	lcdWriteBus(0,0x0F);
-	
+	lcdWriteBus(0,0x08);
 	lcdWriteBus(0,0x00);
-	lcdWriteBus(0,0x01);
-	
+	lcdWriteBus(0,0x01);	
 	lcdWriteBus(0,0x00);
 	lcdWriteBus(0,0x07);
 	
-	lcdWriteBus(0,0x08);
+	lcdWriteBus(0,0x06);
 	lcdWriteBus(0,0x00);
 	
 	lcdWriteBus(1,0x03);
 	lcdWriteBus(1,0x03);
+
+
+
+//lcdWriteBus(0,0x02);
+//lcdWriteBus(0,0x02);
+//lcdWriteBus(0,0x00);
+//lcdWriteBus(0,0x00);
+//lcdWriteBus(0,0x0E);
+//lcdWriteBus(0,0x00);
+//lcdWriteBus(0,0x06);
+//lcdWriteBus(1,0x05);
+//lcdWriteBus(1,0x07);
+
+
 	
 }
 
@@ -189,6 +205,7 @@ int main(void)
   /* USER CODE BEGIN 1 */
 	
 	uint8_t buffer[32];
+	uint32_t i;
 	
   /* USER CODE END 1 */
 
@@ -215,10 +232,14 @@ int main(void)
 	
 	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
 	
+	for(i=0;i<100;i++){
+		lcdDelay();
+	}
+	for(;;){
+		lcdInit();
 	
-	lcdInit();
-	
-	
+		HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
+	}
 	//buffer[0] = lcdReadBus() + 65;
 	//HAL_UART_Transmit(&huart2, &buffer[0], 1, 10);
 

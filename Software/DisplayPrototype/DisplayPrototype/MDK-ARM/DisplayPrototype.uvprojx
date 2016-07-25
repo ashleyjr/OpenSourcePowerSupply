@@ -424,9 +424,6 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>::CMSIS</GroupName>
-        </Group>
-        <Group>
           <GroupName>Middlewares/USB_Device_Library</GroupName>
           <Files>
             <File>
@@ -590,6 +587,9 @@
               <FilePath>../Src/stm32f3xx_it.c</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>
     </Target>
