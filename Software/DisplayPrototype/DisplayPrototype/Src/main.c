@@ -62,7 +62,7 @@ static void MX_USART2_UART_Init(void);
 void lcdDelay(void){
 	uint32_t i;
 	i = 0;
-	while(i < 100000) i++;
+	while(i < 10000) i++;
 }
 
 
@@ -120,33 +120,33 @@ void lcdWriteBus(uint8_t rs, uint8_t data){
 	
 	
 	lcdDelay();
-	if(rs)	HAL_GPIO_WritePin(DISP_RS_GPIO_Port, DISP_RS_Pin, GPIO_PIN_SET);
-	else 	HAL_GPIO_WritePin(DISP_RS_GPIO_Port, DISP_RS_Pin, GPIO_PIN_RESET);
+	if(rs)	HAL_GPIO_WritePin(DISP_RS_GPIO_Port, DISP_RS_Pin, GPIO_PIN_RESET);
+	else 	HAL_GPIO_WritePin(DISP_RS_GPIO_Port, DISP_RS_Pin, GPIO_PIN_SET);
 	
 	
-	HAL_GPIO_WritePin(GPIOC, DISP_RW_Pin, GPIO_PIN_RESET);
-	
-	lcdDelay();
-	
-	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_SET);
-	
-	lcdDelay();
-	
-	if(data & 0x01)	HAL_GPIO_WritePin(GPIOB, DISP_DB4_Pin, GPIO_PIN_SET);
-	else			HAL_GPIO_WritePin(GPIOB, DISP_DB4_Pin, GPIO_PIN_RESET);
-		
-	if(data & 0x02)	HAL_GPIO_WritePin(GPIOB, DISP_DB5_Pin, GPIO_PIN_SET);
-	else			HAL_GPIO_WritePin(GPIOB, DISP_DB5_Pin, GPIO_PIN_RESET);
-	
-	if(data & 0x04)	HAL_GPIO_WritePin(GPIOC, DISP_DB6_Pin, GPIO_PIN_SET);
-	else			HAL_GPIO_WritePin(GPIOC, DISP_DB6_Pin, GPIO_PIN_RESET);
-		
-	if(data & 0x08)	HAL_GPIO_WritePin(GPIOC, DISP_DB7_Pin, GPIO_PIN_SET);
-	else			HAL_GPIO_WritePin(GPIOC, DISP_DB7_Pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOC, DISP_RW_Pin, GPIO_PIN_SET);
 	
 	lcdDelay();
 	
 	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_RESET);
+	
+	lcdDelay();
+	
+	if(data & 0x01)	HAL_GPIO_WritePin(GPIOB, DISP_DB4_Pin, GPIO_PIN_RESET);
+	else			HAL_GPIO_WritePin(GPIOB, DISP_DB4_Pin, GPIO_PIN_SET);
+		
+	if(data & 0x02)	HAL_GPIO_WritePin(GPIOB, DISP_DB5_Pin, GPIO_PIN_RESET);
+	else			HAL_GPIO_WritePin(GPIOB, DISP_DB5_Pin, GPIO_PIN_SET);
+	
+	if(data & 0x04)	HAL_GPIO_WritePin(GPIOC, DISP_DB6_Pin, GPIO_PIN_RESET);
+	else			HAL_GPIO_WritePin(GPIOC, DISP_DB6_Pin, GPIO_PIN_SET);
+		
+	if(data & 0x08)	HAL_GPIO_WritePin(GPIOC, DISP_DB7_Pin, GPIO_PIN_RESET);
+	else			HAL_GPIO_WritePin(GPIOC, DISP_DB7_Pin, GPIO_PIN_SET);
+	
+	lcdDelay();
+	
+	HAL_GPIO_WritePin(GPIOC, DISP_E_Pin, GPIO_PIN_SET);
 	
 	lcdDelay();
 }
@@ -157,38 +157,31 @@ void lcdInit(void){
 	// Top nibble first
 	
 	
-	lcdWriteBus(0,0x03);
-	lcdWriteBus(0,0x03);
-	lcdWriteBus(0,0x03);
+//	lcdWriteBus(0,0x03);
+//	lcdWriteBus(0,0x03);
+//	lcdWriteBus(0,0x03);
+//	
+
+//	lcdWriteBus(0,0x02);
+//	lcdWriteBus(0,0x02);
+//	lcdWriteBus(0,0x0C);
+//	lcdWriteBus(0,0x00);
+//	lcdWriteBus(0,0x08);
+//	lcdWriteBus(0,0x00);
+//	lcdWriteBus(0,0x01);	
+//	lcdWriteBus(0,0x00);
+//	lcdWriteBus(0,0x07);
 	
 
 	lcdWriteBus(0,0x02);
 	lcdWriteBus(0,0x02);
-	lcdWriteBus(0,0x0F);
 	lcdWriteBus(0,0x00);
-	lcdWriteBus(0,0x08);
 	lcdWriteBus(0,0x00);
-	lcdWriteBus(0,0x01);	
+	lcdWriteBus(0,0x0E);
 	lcdWriteBus(0,0x00);
-	lcdWriteBus(0,0x07);
-	
 	lcdWriteBus(0,0x06);
-	lcdWriteBus(0,0x00);
-	
-	lcdWriteBus(1,0x03);
-	lcdWriteBus(1,0x03);
-
-
-
-//lcdWriteBus(0,0x02);
-//lcdWriteBus(0,0x02);
-//lcdWriteBus(0,0x00);
-//lcdWriteBus(0,0x00);
-//lcdWriteBus(0,0x0E);
-//lcdWriteBus(0,0x00);
-//lcdWriteBus(0,0x06);
-//lcdWriteBus(1,0x05);
-//lcdWriteBus(1,0x07);
+	lcdWriteBus(1,0x05);
+	lcdWriteBus(1,0x07);
 
 
 	
@@ -232,14 +225,16 @@ int main(void)
 	
 	HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
 	
-	for(i=0;i<100;i++){
+	
+	//for(;;){
+		for(i=0;i<100;i++){
 		lcdDelay();
 	}
-	for(;;){
+		
 		lcdInit();
 	
 		HAL_UART_Transmit(&huart2, &buffer[0], 6, 10);
-	}
+	//}
 	//buffer[0] = lcdReadBus() + 65;
 	//HAL_UART_Transmit(&huart2, &buffer[0], 1, 10);
 

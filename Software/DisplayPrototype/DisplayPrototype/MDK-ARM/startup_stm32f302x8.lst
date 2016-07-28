@@ -582,15 +582,15 @@ erwork --depend=displayprototype\startup_stm32f302x8.d -odisplayprototype\start
 up_stm32f302x8.o -I"C:\Users\Ashley Robinson\Desktop\OpenSourcePowerSupply\Soft
 ware\DisplayPrototype\DisplayPrototype\MDK-ARM\RTE" -IC:\Keil_v5\ARM\PACK\ARM\C
 MSIS\4.5.0\CMSIS\Include -IC:\Keil_v5\ARM\PACK\Keil\STM32F3xx_DFP\1.3.0\Device\
-Include --predefine="__EVAL SETA 1" --predefine="__MICROLIB SETA 1" --predefine
+Include --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 517
 
 
 
 ARM Macro Assembler    Page 10 
 
 
-="__UVISION_VERSION SETA 517" --predefine="_RTE_ SETA 1" --predefine="STM32F302
-x8 SETA 1" --list=startup_stm32f302x8.lst startup_stm32f302x8.s
+" --predefine="_RTE_ SETA 1" --predefine="STM32F302x8 SETA 1" --list=startup_st
+m32f302x8.lst startup_stm32f302x8.s
 
 
 
@@ -1366,4 +1366,4 @@ Symbol: __main
       At line 191 in file startup_stm32f302x8.s
 Comment: __main used once
 2 symbols
-415 symbols in table
+414 symbols in table
